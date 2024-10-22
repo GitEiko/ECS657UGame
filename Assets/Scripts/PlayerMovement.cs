@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    // Start is called before the first frame update
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -33,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
         sprintAction.canceled += context => StopSprinting();
     }
 
-    // Update is called once per frame
     void Update()
     {
         MovePlayer();

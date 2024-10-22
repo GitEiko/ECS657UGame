@@ -80,7 +80,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public void HoldObject()
     {
-        heldObject.transform.position = playerCamera.transform.position + playerCamera.transform.forward * 1.5f; // 1.5f is the distance from the camera, adjust as needed
+        heldObject.transform.position = playerCamera.transform.position + playerCamera.transform.forward * 1.5f;
     }
 
     public void OnThrow(InputAction.CallbackContext context)
