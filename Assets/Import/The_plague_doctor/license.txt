@@ -1,0 +1,11 @@
+Model Information:
+* title:	The plague doctor
+* source:	https://sketchfab.com/3d-models/the-plague-doctor-73ea574f446f49ba8018bdea64d59952
+* author:	BELAZ (https://sketchfab.com/asset_for_games)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "The plague doctor" (https://sketchfab.com/3d-models/the-plague-doctor-73ea574f446f49ba8018bdea64d59952) by BELAZ (https://sketchfab.com/asset_for_games) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

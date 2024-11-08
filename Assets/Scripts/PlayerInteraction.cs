@@ -12,6 +12,8 @@ public class PlayerInteraction : MonoBehaviour
 
     public GameObject pickUpText;
     public GameObject throwText;
+    
+    [SerializeField] private InventorySystem inventorySystem;
 
     private GameObject heldObject = null;
     private Rigidbody heldObjectRb;
@@ -19,6 +21,7 @@ public class PlayerInteraction : MonoBehaviour
     private PlayerInput playerInput;
     private InputAction throwAction;
     private InputAction fireAction;
+    private InputAction stashAction;
 
     void Awake()
     {
@@ -26,18 +29,26 @@ public class PlayerInteraction : MonoBehaviour
 
         throwAction = playerInput.actions.FindAction("Throw");
         fireAction = playerInput.actions.FindAction("Fire");
+        stashAction = playerInput.actions.FindAction("Stash");
     }
 
     void OnEnable()
     {
         throwAction.performed += OnThrow;
         fireAction.performed += OnFire;
+        stashAction.performed += OnStash;
+    }
+
+    public GameObject getHeldObject()
+    {
+        return heldObject;
     }
 
     void OnDisable()
     {
         throwAction.performed -= OnThrow;
         fireAction.performed -= OnFire;
+        stashAction.performed -= OnStash;
     }
 
     void Update()
@@ -55,7 +66,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, pickUpRange))
         {
-            if (hit.collider.CompareTag("PickUp"))
+            if (hit.collider.CompareTag("PickUp") && inventorySystem.canPickItem())
             {
                 PickUpObject(hit.collider.gameObject);
             }
@@ -74,6 +85,7 @@ public class PlayerInteraction : MonoBehaviour
         heldObject.transform.position = holdPosition.position;
         heldObject.transform.parent = holdPosition;
 
+        inventorySystem.PickUpItem(pickUpObject);
         pickUpText.SetActive(false);
         throwText.SetActive(true);
     }
@@ -101,19 +113,79 @@ public class PlayerInteraction : MonoBehaviour
 
         heldObjectRb.AddForce(playerCamera.transform.forward * throwForce);
 
+        inventorySystem.DropItem(heldObject);
         heldObject = null;
         throwText.SetActive(false);
         pickUpText.SetActive(true);
 
     }
 
+    public void PullObject(GameObject pickUpObject)
+    {
+        heldObject = pickUpObject;
+        heldObjectRb = heldObject.GetComponent<Rigidbody>();
+
+        heldObjectRb.useGravity = false;
+        heldObjectRb.constraints = RigidbodyConstraints.FreezeRotation;
+        heldObjectRb.isKinematic = true;
+
+        heldObject.transform.position = holdPosition.position;
+        heldObject.transform.parent = holdPosition;
+
+        pickUpText.SetActive(false);
+        throwText.SetActive(true);
+    }
+
+
     public void OnFire(InputAction.CallbackContext context)
     {
-        Debug.Log("Object pick up called");
         if (heldObject == null)
         {
-            Debug.Log("Object picked up");
             TryPickUpObject();
+        }
+    }
+
+    public void switchItem(GameObject item)
+    {
+        if (heldObject != null)
+        {
+            heldObject.SetActive(false);
+            heldObject.transform.parent = null;
+            heldObjectRb = null;
+            heldObject = null;
+        }
+
+        if (item != null)
+        {
+            heldObject = item;
+            heldObject.SetActive(true);
+            heldObjectRb = heldObject.GetComponent<Rigidbody>();
+
+            heldObjectRb.useGravity = false;
+            heldObjectRb.constraints = RigidbodyConstraints.FreezeRotation;
+            heldObjectRb.isKinematic = true;
+
+            heldObject.transform.position = holdPosition.position;
+            heldObject.transform.parent = holdPosition;
+
+            throwText.SetActive(true);
+            pickUpText.SetActive(false);
+        }
+        else
+        {
+            throwText.SetActive(false);
+            pickUpText.SetActive(true);
+        }
+    }
+
+    void OnStash(InputAction.CallbackContext context)
+    {
+        if (heldObject != null)
+        {
+            heldObject.SetActive(false);
+            heldObject.transform.parent = null;
+            heldObjectRb = null;
+            heldObject = null;
         }
     }
 }
