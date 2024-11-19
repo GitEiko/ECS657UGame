@@ -18,6 +18,9 @@ public class PlayerInteraction : MonoBehaviour
     private GameObject heldObject = null;
     private Rigidbody heldObjectRb;
 
+    public GameObject crosshair;
+    public GameObject crosshairInRange;
+
     private PlayerInput playerInput;
     private InputAction throwAction;
     private InputAction fireAction;
@@ -57,6 +60,25 @@ public class PlayerInteraction : MonoBehaviour
         {
             HoldObject();
         }
+        
+        if (heldObject == null) {
+            Ray ray = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.CompareTag("PickUp"))
+                {
+                    crosshair.SetActive(false);
+                    crosshairInRange.SetActive(true);
+                }
+                else
+                {
+                    crosshairInRange.SetActive(false);
+                    crosshair.SetActive(true);
+                }
+            }
+        }
     }
 
     public void TryPickUpObject()
@@ -88,6 +110,8 @@ public class PlayerInteraction : MonoBehaviour
         inventorySystem.PickUpItem(pickUpObject);
         pickUpText.SetActive(false);
         throwText.SetActive(true);
+        crosshair.SetActive(true);
+        crosshairInRange.SetActive(false);
     }
 
     public void HoldObject()
@@ -170,6 +194,8 @@ public class PlayerInteraction : MonoBehaviour
 
             throwText.SetActive(true);
             pickUpText.SetActive(false);
+            crosshair.SetActive(true);
+            crosshairInRange.SetActive(false);
         }
         else
         {
