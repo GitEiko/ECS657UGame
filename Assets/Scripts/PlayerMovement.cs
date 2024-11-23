@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float sprintSpeed = 10f;
     [SerializeField] float lookSensitivity = 1f;
     [SerializeField] Transform playerCamera;
+    float verticalVelocity = 0f;
+    [SerializeField] float gravity = -9.81f;
 
     float xRotation = 0f;
     bool isSprinting = false;
@@ -35,8 +37,22 @@ public class PlayerMovement : MonoBehaviour
         sprintAction.canceled += context => StopSprinting();
     }
 
+    void ApplyGravity()
+    {
+        if (characterController.isGrounded)
+        {
+            verticalVelocity = -0.5f; 
+        }
+        else
+        {
+            verticalVelocity += gravity * Time.deltaTime;
+        }
+    }
+
+
     void Update()
     {
+        ApplyGravity();
         MovePlayer();
         LookAround();
     }
@@ -46,21 +62,20 @@ public class PlayerMovement : MonoBehaviour
         Vector2 input = moveAction.ReadValue<Vector2>();
         float currentSpeed = isSprinting ? sprintSpeed : speed;
 
-        // Calculate movement direction
         Vector3 moveDirection = transform.right * input.x + transform.forward * input.y;
 
-        // Use CharacterController to move
+        moveDirection.y = verticalVelocity;
+
         characterController.Move(moveDirection * currentSpeed * Time.deltaTime);
     }
+
 
     void LookAround()
     {
         Vector2 lookVector = lookAction.ReadValue<Vector2>();
 
-        // Rotate player around the Y-axis
         transform.Rotate(Vector3.up * lookVector.x * lookSensitivity);
 
-        // Rotate camera up and down
         xRotation -= lookVector.y * lookSensitivity;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
         playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
