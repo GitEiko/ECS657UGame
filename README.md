@@ -12,7 +12,7 @@
 
 ### Object Interaction:
 
--   **Left Mouse Button (Fire)** - Pick up objects
+-   **Left Mouse Button (Fire)** - Pick up objects, Interact with doors
 -   **Right Mouse Button (Throw)** - Throw/drop objects
 
 ## Features
