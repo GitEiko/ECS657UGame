@@ -17,5 +17,6 @@ public class NewBehaviourScript : MonoBehaviour
     {
         gameObject.transform.rotation.Equals(player.rotation);
         enemy.destination = player.position;
+        Debug.Log(enemy.hasPath);
     }
 }

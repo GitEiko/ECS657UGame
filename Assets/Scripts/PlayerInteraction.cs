@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
@@ -186,15 +187,18 @@ public class PlayerInteraction : MonoBehaviour
     public void ToggleDoor(GameObject door)
     {
         Animator _anim = door.GetComponent<Animator>();
+        NavMeshObstacle navMeshObstacle = door.GetComponent<NavMeshObstacle>();
         AnimatorStateInfo stateInfo = _anim.GetCurrentAnimatorStateInfo(0);
 
         if (stateInfo.IsName("DoorOpen"))
         {
             _anim.SetTrigger("CloseDoor");
+            navMeshObstacle.carving = true;
         }
         else
         {
             _anim.SetTrigger("OpenDoor");
+            navMeshObstacle.carving = false;
         }
     }
 
