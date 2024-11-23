@@ -14,6 +14,7 @@
 
 -   **Left Mouse Button (Fire)** - Pick up objects, Interact with doors
 -   **Right Mouse Button (Throw)** - Throw/drop objects
+-   **Middle Mouse/Scroll (Change)** - Change between inventory items
 
 ## Features
 
