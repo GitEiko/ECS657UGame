@@ -14,13 +14,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float sprintSpeed = 10f;
     [SerializeField] float lookSensitivity = 1f;
     [SerializeField] Transform playerCamera;
-    float verticalVelocity = 0f;
     [SerializeField] float gravity = -9.81f;
+    [SerializeField] float stepDistance = 2f;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] List<AudioClip> defaultFootstepSounds;
+    [SerializeField] LayerMask groundLayer;
+    [SerializeField] Dictionary<int, List<AudioClip>> layerFootstepSounds = new Dictionary<int, List<AudioClip>>();
 
+    float verticalVelocity = 0f;
     float xRotation = 0f;
     bool isSprinting = false;
 
     CharacterController characterController;
+    Vector3 lastFootstepPosition;
 
     void Start()
     {
@@ -35,13 +41,15 @@ public class PlayerMovement : MonoBehaviour
 
         sprintAction.performed += context => StartSprinting();
         sprintAction.canceled += context => StopSprinting();
+
+        lastFootstepPosition = transform.position;
     }
 
     void ApplyGravity()
     {
         if (characterController.isGrounded)
         {
-            verticalVelocity = -0.5f; 
+            verticalVelocity = -0.5f;
         }
         else
         {
@@ -49,12 +57,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
     void Update()
     {
         ApplyGravity();
         MovePlayer();
         LookAround();
+        HandleFootsteps();
     }
 
     void MovePlayer()
@@ -69,7 +77,6 @@ public class PlayerMovement : MonoBehaviour
         characterController.Move(moveDirection * currentSpeed * Time.deltaTime);
     }
 
-
     void LookAround()
     {
         Vector2 lookVector = lookAction.ReadValue<Vector2>();
@@ -79,6 +86,50 @@ public class PlayerMovement : MonoBehaviour
         xRotation -= lookVector.y * lookSensitivity;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
         playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+    }
+
+    void HandleFootsteps()
+    {
+        if (!characterController.isGrounded) return;
+
+        Vector3 currentPosition = transform.position;
+        float distanceMoved = Vector3.Distance(lastFootstepPosition, currentPosition);
+
+        if (distanceMoved >= stepDistance)
+        {
+            PlayFootstepSound();
+            lastFootstepPosition = currentPosition;
+        }
+    }
+
+    void PlayFootstepSound()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 2f, groundLayer))
+        {
+            int layer = hit.collider.gameObject.layer;
+
+            if (layerFootstepSounds.ContainsKey(layer) && layerFootstepSounds[layer].Count > 0)
+            {
+                PlayRandomSound(layerFootstepSounds[layer]);
+            }
+            else
+            {
+                PlayRandomSound(defaultFootstepSounds);
+            }
+        }
+        else
+        {
+            PlayRandomSound(defaultFootstepSounds);
+        }
+    }
+
+    void PlayRandomSound(List<AudioClip> clips)
+    {
+        if (clips == null || clips.Count == 0 || audioSource == null) return;
+
+        AudioClip clip = clips[Random.Range(0, clips.Count)];
+        audioSource.PlayOneShot(clip);
     }
 
     void StartSprinting()
