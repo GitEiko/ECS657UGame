@@ -3,19 +3,52 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NewBehaviourScript : MonoBehaviour
+public class EnemyNavigation : MonoBehaviour
 {
     public Transform player;
-    private NavMeshAgent enemy;
+    private NavMeshAgent agent;
+
+    public enum EnemyState { Patrol, Chase }
+    private EnemyState currentState = EnemyState.Patrol;
+
+    public Transform[] patrolPoints;
+    private int currentPatrolIndex = 0;
 
     void Start()
     {
-        enemy = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
+        currentState = EnemyState.Patrol;
+        GoToNextPatrolPoint();
     }
 
     void Update()
     {
-        gameObject.transform.rotation.Equals(player.rotation);
-        enemy.destination = player.position;
+        Debug.Log(currentState);
+        if (currentState == EnemyState.Chase)
+        {
+            gameObject.transform.rotation.Equals(player.rotation);
+            agent.destination = player.position;
+        }
+        else
+        {
+            if (!agent.pathPending && agent.remainingDistance < 0.5f)
+            {
+                GoToNextPatrolPoint();
+            }
+        }
+    }
+
+    void GoToNextPatrolPoint()
+    {
+        if (patrolPoints.Length == 0)
+            return;
+
+        agent.destination = patrolPoints[currentPatrolIndex].position;
+        currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
+    }
+
+    public void setCurrentState(EnemyState state)
+    {
+        currentState = state;
     }
 }

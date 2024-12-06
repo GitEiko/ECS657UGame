@@ -21,9 +21,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
     [SerializeField] Dictionary<int, List<AudioClip>> layerFootstepSounds = new Dictionary<int, List<AudioClip>>();
 
+    public EnemyNavigation enemyNavigation;
     float verticalVelocity = 0f;
     float xRotation = 0f;
     bool isSprinting = false;
+    public List<Collider> colliders = new List<Collider>();
 
     CharacterController characterController;
     Vector3 lastFootstepPosition;
@@ -54,6 +56,22 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             verticalVelocity += gravity * Time.deltaTime;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (colliders.Contains(other))
+        {
+            enemyNavigation.setCurrentState(EnemyNavigation.EnemyState.Patrol);
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (colliders.Contains(other))
+        {
+            enemyNavigation.setCurrentState(EnemyNavigation.EnemyState.Chase);
         }
     }
 
