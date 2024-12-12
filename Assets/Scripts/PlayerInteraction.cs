@@ -14,7 +14,8 @@ public class PlayerInteraction : MonoBehaviour
 
     public GameObject pickUpText;
     public GameObject throwText;
-    
+
+    private AudioSource audio;
     [SerializeField] private InventorySystem inventorySystem;
 
     private GameObject heldObject = null;
@@ -172,6 +173,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (hit.collider.CompareTag("Door"))
             {
+                Debug.Log("called" + Time.frameCount);
                 ToggleDoor(hit.transform.gameObject);
             }
             else if (hit.collider.CompareTag("PickUp"))
@@ -189,7 +191,8 @@ public class PlayerInteraction : MonoBehaviour
         Animator _anim = door.GetComponent<Animator>();
         NavMeshObstacle navMeshObstacle = door.GetComponent<NavMeshObstacle>();
         AnimatorStateInfo stateInfo = _anim.GetCurrentAnimatorStateInfo(0);
-
+        audio = door.GetComponent<AudioSource>();
+        audio.PlayOneShot(audio.clip);
         if (stateInfo.IsName("DoorOpen"))
         {
             _anim.SetTrigger("CloseDoor");

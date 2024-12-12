@@ -23,7 +23,7 @@ public class EnemyNavigation : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(currentState);
+        //Debug.Log(currentState);
         if (currentState == EnemyState.Chase)
         {
             gameObject.transform.rotation.Equals(player.rotation);
