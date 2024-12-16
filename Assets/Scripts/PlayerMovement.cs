@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     
     float xRotation = 0f;
     bool isSprinting = false;
+    public bool isNearKeypad = false;
 
 
 
@@ -65,5 +66,21 @@ public class PlayerMovement : MonoBehaviour
     void StopSprinting()
     {
         isSprinting = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Keypad"))
+        {
+            isNearKeypad = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Keypad"))
+        {
+            isNearKeypad = false;
+        }
     }
 }

@@ -1,7 +1,11 @@
 fileFormatVersion: 2
-guid: 67eed66b8f6f5094b93ddb690083beb9
-DefaultImporter:
+guid: f2974149c6fb01b409a280581634da96
+MonoImporter:
   externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -10,5 +14,5 @@ AssetOrigin:
   productId: 262151
   packageName: Keypad FREE
   packageVersion: 1.0.1
-  assetPath: Assets/Keypad/Scenes/KeypadSceneUrp.unity
+  assetPath: Assets/Keypad/Scripts/KeypadInteractionFPV.cs
   uploadId: 657263

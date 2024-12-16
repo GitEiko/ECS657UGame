@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 67eed66b8f6f5094b93ddb690083beb9
+guid: 7545ade6af7fc914d8e5bdb74efcb437
 DefaultImporter:
   externalObjects: {}
   userData: 
@@ -10,5 +10,5 @@ AssetOrigin:
   productId: 262151
   packageName: Keypad FREE
   packageVersion: 1.0.1
-  assetPath: Assets/Keypad/Scenes/KeypadSceneUrp.unity
+  assetPath: Assets/Keypad/Scenes/ExampleScene/Keypad_DoorExampleScene_Standard.unity
   uploadId: 657263

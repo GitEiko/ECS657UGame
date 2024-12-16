@@ -4,19 +4,19 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxLives = 5; // Maximum number of lives
-    public List<Image> lifeIcons; // List of the red squares (life indicators)
+    public int maxLives = 5; 
+    public List<Image> lifeIcons; 
 
-    private int currentLives; // Current number of lives
+    private int currentLives; 
 
     void Start()
     {
-        // Set current lives to the maximum number of lives
+        
         currentLives = maxLives;
-        UpdateLivesUI(); // Call this once at the start to ensure UI is correct
+        UpdateLivesUI(); 
     }
 
-    // Call this function when the player is hit
+    
     public void TakeDamage(int damageAmount)
     {
         currentLives -= damageAmount;
@@ -35,12 +35,12 @@ public class PlayerHealth : MonoBehaviour
         {
             if (i < currentLives)
             {
-                lifeIcons[i].enabled = true; // Show this life
+                lifeIcons[i].enabled = true; 
                 Debug.Log($"Life {i + 1} is ON");
             }
             else
             {
-                lifeIcons[i].enabled = false; // Hide this life
+                lifeIcons[i].enabled = false; 
                 Debug.Log($"Life {i + 1} is OFF");
             }
         }
