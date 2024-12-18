@@ -24,7 +24,6 @@ void Start()
     {
         foreach (var slotImage in slotImages)
         {
-            Debug.Log("Slot Image: " + slotImage.name);
             slotImage.material = new Material(Shader.Find("UI/Default"));
             slotImage.material.mainTexture = null;
         }
@@ -70,7 +69,6 @@ void Start()
         {
             if (i < inventory.Count)
             {
-                Debug.Log("DisplayItemThumbnail Called");
                 DisplayItemThumbnail(inventory[i], slotImages[i]);
             }
             else

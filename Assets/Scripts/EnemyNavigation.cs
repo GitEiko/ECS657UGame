@@ -38,6 +38,14 @@ public class EnemyNavigation : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            setCurrentState(EnemyState.Patrol);
+        }
+    }
+
     void GoToNextPatrolPoint()
     {
         if (patrolPoints.Length == 0)

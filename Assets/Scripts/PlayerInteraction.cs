@@ -173,7 +173,6 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (hit.collider.CompareTag("Door"))
             {
-                Debug.Log("called" + Time.frameCount);
                 ToggleDoor(hit.transform.gameObject);
             }
             else if (hit.collider.CompareTag("PickUp"))
