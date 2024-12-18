@@ -159,4 +159,20 @@ public class PlayerMovement : MonoBehaviour
     {
         isSprinting = false;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Keypad"))
+        {
+            isNearKeypad = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Keypad"))
+        {
+            isNearKeypad = false;
+        }
+    }
 }
