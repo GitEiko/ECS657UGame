@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
@@ -12,11 +14,15 @@ public class PlayerInteraction : MonoBehaviour
 
     public GameObject pickUpText;
     public GameObject throwText;
-    
+
+    private AudioSource audio;
     [SerializeField] private InventorySystem inventorySystem;
 
     private GameObject heldObject = null;
     private Rigidbody heldObjectRb;
+
+    public GameObject crosshair;
+    public GameObject crosshairInRange;
 
     private PlayerInput playerInput;
     private InputAction throwAction;
@@ -57,6 +63,25 @@ public class PlayerInteraction : MonoBehaviour
         {
             HoldObject();
         }
+        
+        if (heldObject == null) {
+            Ray ray = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.CompareTag("PickUp") || hit.collider.CompareTag("Door"))
+                {
+                    crosshair.SetActive(false);
+                    crosshairInRange.SetActive(true);
+                }
+                else
+                {
+                    crosshairInRange.SetActive(false);
+                    crosshair.SetActive(true);
+                }
+            }
+        }
     }
 
     public void TryPickUpObject()
@@ -88,6 +113,8 @@ public class PlayerInteraction : MonoBehaviour
         inventorySystem.PickUpItem(pickUpObject);
         pickUpText.SetActive(false);
         throwText.SetActive(true);
+        crosshair.SetActive(true);
+        crosshairInRange.SetActive(false);
     }
 
     public void HoldObject()
@@ -139,9 +166,42 @@ public class PlayerInteraction : MonoBehaviour
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (heldObject == null)
+        Ray ray = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
         {
-            TryPickUpObject();
+            if (hit.collider.CompareTag("Door"))
+            {
+                Debug.Log("called" + Time.frameCount);
+                ToggleDoor(hit.transform.gameObject);
+            }
+            else if (hit.collider.CompareTag("PickUp"))
+            {
+                if (heldObject == null)
+                {
+                    TryPickUpObject();
+                }
+            }
+        }
+    }
+
+    public void ToggleDoor(GameObject door)
+    {
+        Animator _anim = door.GetComponent<Animator>();
+        NavMeshObstacle navMeshObstacle = door.GetComponent<NavMeshObstacle>();
+        AnimatorStateInfo stateInfo = _anim.GetCurrentAnimatorStateInfo(0);
+        audio = door.GetComponent<AudioSource>();
+        audio.PlayOneShot(audio.clip);
+        if (stateInfo.IsName("DoorOpen"))
+        {
+            _anim.SetTrigger("CloseDoor");
+            navMeshObstacle.carving = true;
+        }
+        else
+        {
+            _anim.SetTrigger("OpenDoor");
+            navMeshObstacle.carving = false;
         }
     }
 
@@ -170,6 +230,8 @@ public class PlayerInteraction : MonoBehaviour
 
             throwText.SetActive(true);
             pickUpText.SetActive(false);
+            crosshair.SetActive(true);
+            crosshairInRange.SetActive(false);
         }
         else
         {

@@ -7,11 +7,12 @@ TagManager:
   - PickUp
   - EnemyTest
   - Keypad
+  - Door
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 

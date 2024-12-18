@@ -10,41 +10,89 @@ public class PlayerMovement : MonoBehaviour
     InputAction lookAction;
     InputAction sprintAction;
 
-    [SerializeField] float speed = 5;
+    [SerializeField] float speed = 5f;
     [SerializeField] float sprintSpeed = 10f;
     [SerializeField] float lookSensitivity = 1f;
     [SerializeField] Transform playerCamera;
-    
+    [SerializeField] float gravity = -9.81f;
+    [SerializeField] float stepDistance = 2f;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] List<AudioClip> defaultFootstepSounds;
+    [SerializeField] LayerMask groundLayer;
+    [SerializeField] Dictionary<int, List<AudioClip>> layerFootstepSounds = new Dictionary<int, List<AudioClip>>();
+
+    public EnemyNavigation enemyNavigation;
+    float verticalVelocity = 0f;
     float xRotation = 0f;
     bool isSprinting = false;
-    public bool isNearKeypad = false;
+    public List<Collider> colliders = new List<Collider>();
 
-
+    CharacterController characterController;
+    Vector3 lastFootstepPosition;
 
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
+        characterController = GetComponent<CharacterController>();
+
         moveAction = playerInput.actions.FindAction("Move");
         lookAction = playerInput.actions.FindAction("Look");
         sprintAction = playerInput.actions.FindAction("Sprint");
+
         Cursor.lockState = CursorLockMode.Locked;
 
         sprintAction.performed += context => StartSprinting();
         sprintAction.canceled += context => StopSprinting();
+
+        lastFootstepPosition = transform.position;
+    }
+
+    void ApplyGravity()
+    {
+        if (characterController.isGrounded)
+        {
+            verticalVelocity = -0.5f;
+        }
+        else
+        {
+            verticalVelocity += gravity * Time.deltaTime;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (colliders.Contains(other))
+        {
+            enemyNavigation.setCurrentState(EnemyNavigation.EnemyState.Patrol);
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (colliders.Contains(other))
+        {
+            enemyNavigation.setCurrentState(EnemyNavigation.EnemyState.Chase);
+        }
     }
 
     void Update()
     {
+        ApplyGravity();
         MovePlayer();
         LookAround();
+        HandleFootsteps();
     }
 
     void MovePlayer()
     {
-        Vector2 vector2 = moveAction.ReadValue<Vector2>();
+        Vector2 input = moveAction.ReadValue<Vector2>();
         float currentSpeed = isSprinting ? sprintSpeed : speed;
-        Vector3 moveVector = transform.right * vector2.x + transform.forward * vector2.y;
-        transform.position += moveVector * Time.deltaTime * currentSpeed;
+
+        Vector3 moveDirection = transform.right * input.x + transform.forward * input.y;
+
+        moveDirection.y = verticalVelocity;
+
+        characterController.Move(moveDirection * currentSpeed * Time.deltaTime);
     }
 
     void LookAround()
@@ -56,6 +104,50 @@ public class PlayerMovement : MonoBehaviour
         xRotation -= lookVector.y * lookSensitivity;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
         playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+    }
+
+    void HandleFootsteps()
+    {
+        if (!characterController.isGrounded) return;
+
+        Vector3 currentPosition = transform.position;
+        float distanceMoved = Vector3.Distance(lastFootstepPosition, currentPosition);
+
+        if (distanceMoved >= stepDistance)
+        {
+            PlayFootstepSound();
+            lastFootstepPosition = currentPosition;
+        }
+    }
+
+    void PlayFootstepSound()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 2f, groundLayer))
+        {
+            int layer = hit.collider.gameObject.layer;
+
+            if (layerFootstepSounds.ContainsKey(layer) && layerFootstepSounds[layer].Count > 0)
+            {
+                PlayRandomSound(layerFootstepSounds[layer]);
+            }
+            else
+            {
+                PlayRandomSound(defaultFootstepSounds);
+            }
+        }
+        else
+        {
+            PlayRandomSound(defaultFootstepSounds);
+        }
+    }
+
+    void PlayRandomSound(List<AudioClip> clips)
+    {
+        if (clips == null || clips.Count == 0 || audioSource == null) return;
+
+        AudioClip clip = clips[Random.Range(0, clips.Count)];
+        audioSource.PlayOneShot(clip);
     }
 
     void StartSprinting()
