@@ -26,12 +26,14 @@ public class PlayerMovement : MonoBehaviour
     float xRotation = 0f;
     bool isSprinting = false;
     public List<Collider> colliders = new List<Collider>();
+    private static bool canMoveAndLookAround;
 
     CharacterController characterController;
     Vector3 lastFootstepPosition;
 
     void Start()
     {
+        canMoveAndLookAround = true;
         playerInput = GetComponent<PlayerInput>();
         characterController = GetComponent<CharacterController>();
 
@@ -77,10 +79,17 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (canMoveAndLookAround)
+        {
+            MovePlayer();
+            LookAround();
+            HandleFootsteps();
+        }
+        else
+        {
+            characterController.Move(Vector3.zero);
+        }
         ApplyGravity();
-        MovePlayer();
-        LookAround();
-        HandleFootsteps();
     }
 
     void MovePlayer()
@@ -158,5 +167,15 @@ public class PlayerMovement : MonoBehaviour
     void StopSprinting()
     {
         isSprinting = false;
+    }
+
+    public static void SetCanMoveAndLookAround(bool val)
+    {
+        canMoveAndLookAround = val;
+    }
+
+    public static bool GetCanMoveAndLookAround()
+    {
+        return canMoveAndLookAround;
     }
 }

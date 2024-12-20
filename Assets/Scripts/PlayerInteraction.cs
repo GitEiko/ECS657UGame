@@ -16,7 +16,9 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject throwText;
 
     private AudioSource audio;
+
     [SerializeField] private InventorySystem inventorySystem;
+    [SerializeField] private GameObject keypadPanel;
 
     private GameObject heldObject = null;
     private Rigidbody heldObjectRb;
@@ -28,6 +30,7 @@ public class PlayerInteraction : MonoBehaviour
     private InputAction throwAction;
     private InputAction fireAction;
     private InputAction stashAction;
+    private InputAction closeKeypadAction;
 
     void Awake()
     {
@@ -36,6 +39,7 @@ public class PlayerInteraction : MonoBehaviour
         throwAction = playerInput.actions.FindAction("Throw");
         fireAction = playerInput.actions.FindAction("Fire");
         stashAction = playerInput.actions.FindAction("Stash");
+        closeKeypadAction = playerInput.actions.FindAction("CloseKeypad");
     }
 
     void OnEnable()
@@ -43,6 +47,15 @@ public class PlayerInteraction : MonoBehaviour
         throwAction.performed += OnThrow;
         fireAction.performed += OnFire;
         stashAction.performed += OnStash;
+        closeKeypadAction.performed += OnCloseKeypad;
+    }
+
+    private void OnCloseKeypad(InputAction.CallbackContext context)
+    {
+        keypadPanel.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        PlayerMovement.SetCanMoveAndLookAround(true);
     }
 
     public GameObject getHeldObject()
@@ -70,7 +83,7 @@ public class PlayerInteraction : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.CompareTag("PickUp") || hit.collider.CompareTag("Door"))
+                if (hit.collider.CompareTag("PickUp") || hit.collider.CompareTag("Door") || hit.collider.CompareTag("Keypad"))
                 {
                     crosshair.SetActive(false);
                     crosshairInRange.SetActive(true);
@@ -171,16 +184,23 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, pickUpRange))
         {
-            if (hit.collider.CompareTag("Door"))
+            if (hit.collider.CompareTag("Door") && PlayerMovement.GetCanMoveAndLookAround())
             {
                 ToggleDoor(hit.transform.gameObject);
             }
-            else if (hit.collider.CompareTag("PickUp"))
+            else if (hit.collider.CompareTag("PickUp") && PlayerMovement.GetCanMoveAndLookAround())
             {
                 if (heldObject == null)
                 {
                     TryPickUpObject();
                 }
+            }
+            else if (hit.collider.CompareTag("Keypad"))
+            {
+                keypadPanel.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                PlayerMovement.SetCanMoveAndLookAround(false);
             }
         }
     }
