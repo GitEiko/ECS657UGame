@@ -1401,6 +1401,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: a6e2bd2a-52ad-461e-856a-37594a2e1c88
     m_ActionName: 'InGame/Stash[/Keyboard/c]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 604a1e4e-93c4-4839-9ed8-c8984a515adf
+    m_ActionName: 'InGame/CloseKeypad[/Keyboard/x]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: InGame
@@ -1559,6 +1563,7 @@ MonoBehaviour:
   throwText: {fileID: 874781266}
   inventorySystem: {fileID: 1012667259}
   keypadPanel: {fileID: 1658145179}
+  keypadController: {fileID: 470982139}
   crosshair: {fileID: 200723943}
   crosshairInRange: {fileID: 1212041173}
 --- !u!143 &57203993
@@ -13594,6 +13599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keypadPanel: {fileID: 1658145179}
   passwordDisplay: {fileID: 1390942865}
+  currentKeypad: {fileID: 0}
 --- !u!4 &470982140
 Transform:
   m_ObjectHideFlags: 0
@@ -23214,6 +23220,12 @@ Transform:
   - {fileID: 2058567367}
   m_Father: {fileID: 2126502502}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &845329669 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 116412, guid: 9c25864566bc2a7489bef25ecb47dd6c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1967791954}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &846539020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23909,7 +23921,7 @@ Transform:
   m_GameObject: {fileID: 877109924}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 69.78, y: -1, z: 4.64}
+  m_LocalPosition: {x: 25.44, y: -1, z: 52.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -31954,6 +31966,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1209657491045586251, guid: 2cf8072ebed1149479d25d30c324125c,
+        type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 845329669}
+    - target: {fileID: 1209657491045586251, guid: 2cf8072ebed1149479d25d30c324125c,
+        type: 3}
+      propertyPath: correctPassword
+      value: 1881
+      objectReference: {fileID: 0}
     - target: {fileID: 2303921294396319332, guid: 2cf8072ebed1149479d25d30c324125c,
         type: 3}
       propertyPath: MinDistance
@@ -53936,6 +53958,10 @@ PrefabInstance:
     - target: {fileID: 116412, guid: 9c25864566bc2a7489bef25ecb47dd6c, type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 116412, guid: 9c25864566bc2a7489bef25ecb47dd6c, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 116412, guid: 9c25864566bc2a7489bef25ecb47dd6c, type: 3}
       propertyPath: m_StaticEditorFlags

@@ -6,7 +6,8 @@ using TMPro;
 public class KeypadController : MonoBehaviour
 {
     [SerializeField] private GameObject keypadPanel; 
-    [SerializeField] private TextMeshProUGUI passwordDisplay; 
+    [SerializeField] private TextMeshProUGUI passwordDisplay;
+    [SerializeField] private Keypad currentKeypad;
 
     private string currentInput = "";
 
@@ -44,9 +45,11 @@ public class KeypadController : MonoBehaviour
 
     public void SubmitPassword()
     {
-        if (currentInput == "1234") 
+        if (currentInput == currentKeypad.GetCorrectPassword()) 
         {
-            passwordDisplay.text = "Correct"; 
+            passwordDisplay.text = "Correct";
+            currentKeypad.GetDoorObject().tag = "Door";
+            currentKeypad.tag = "Untagged";
         }
         else
         {
@@ -56,6 +59,11 @@ public class KeypadController : MonoBehaviour
        
     }
 
+    public void SetCurrentKeypad(Keypad currentKeypad)
+    {
+        this.currentKeypad = currentKeypad; 
+    }
+ 
     private void UpdateDisplay()
     {
         passwordDisplay.text = currentInput;

@@ -19,6 +19,7 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField] private InventorySystem inventorySystem;
     [SerializeField] private GameObject keypadPanel;
+    [SerializeField] private KeypadController keypadController;
 
     private GameObject heldObject = null;
     private Rigidbody heldObjectRb;
@@ -198,6 +199,7 @@ public class PlayerInteraction : MonoBehaviour
             else if (hit.collider.CompareTag("Keypad"))
             {
                 keypadPanel.SetActive(true);
+                keypadController.SetCurrentKeypad(hit.collider.gameObject.GetComponent<Keypad>());
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 PlayerMovement.SetCanMoveAndLookAround(false);
