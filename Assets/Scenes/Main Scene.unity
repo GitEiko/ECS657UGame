@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 4346357}
   m_Layer: 0
   m_Name: Paper
-  m_TagString: Untagged
+  m_TagString: Paper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1760,6 +1760,7 @@ MonoBehaviour:
   throwText: {fileID: 874781266}
   inventorySystem: {fileID: 1012667259}
   keypadPanel: {fileID: 1658145179}
+  paperPanel: {fileID: 1367275965}
   keypadController: {fileID: 470982139}
   crosshair: {fileID: 200723943}
   crosshairInRange: {fileID: 1212041173}
@@ -44044,7 +44045,7 @@ GameObject:
   - component: {fileID: 1635475918}
   m_Layer: 0
   m_Name: Paper (1)
-  m_TagString: Untagged
+  m_TagString: Paper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

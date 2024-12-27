@@ -19,6 +19,7 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField] private InventorySystem inventorySystem;
     [SerializeField] private GameObject keypadPanel;
+    [SerializeField] private GameObject paperPanel;
     [SerializeField] private KeypadController keypadController;
 
     private GameObject heldObject = null;
@@ -53,10 +54,20 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnCloseKeypad(InputAction.CallbackContext context)
     {
-        keypadPanel.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        PlayerMovement.SetCanMoveAndLookAround(true);
+        if (keypadPanel.activeSelf)
+        {
+            keypadPanel.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            PlayerMovement.SetCanMoveAndLookAround(true);
+        }
+        else if (paperPanel.activeSelf)
+        {
+            paperPanel.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            PlayerMovement.SetCanMoveAndLookAround(true);
+        }
     }
 
     public GameObject getHeldObject()
@@ -84,7 +95,7 @@ public class PlayerInteraction : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.CompareTag("PickUp") || hit.collider.CompareTag("Door") || hit.collider.CompareTag("Keypad"))
+                if (hit.collider.CompareTag("PickUp") || hit.collider.CompareTag("Door") || hit.collider.CompareTag("Keypad") || hit.collider.CompareTag("Paper"))
                 {
                     crosshair.SetActive(false);
                     crosshairInRange.SetActive(true);
