@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     InputAction lookAction;
     InputAction sprintAction;
 
+    //float speed;
+    //float sprintSpeed;
     [SerializeField] float speed = 5f;
     [SerializeField] float sprintSpeed = 10f;
     [SerializeField] float lookSensitivity = 1f;
@@ -33,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        //speed = GameSettings.Instance.PlayerSpeed;
+        //sprintSpeed = speed + 8;
         canMoveAndLookAround = true;
         playerInput = GetComponent<PlayerInput>();
         characterController = GetComponent<CharacterController>();

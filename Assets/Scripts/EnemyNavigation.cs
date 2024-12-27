@@ -17,6 +17,7 @@ public class EnemyNavigation : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        //agent.speed = GameSettings.Instance.EnemySpeed;
         currentState = EnemyState.Patrol;
         GoToNextPatrolPoint();
     }
@@ -58,5 +59,10 @@ public class EnemyNavigation : MonoBehaviour
     public void setCurrentState(EnemyState state)
     {
         currentState = state;
+
+        if (state == EnemyState.Patrol)
+        {
+            GoToNextPatrolPoint();
+        }
     }
 }
