@@ -33,6 +33,7 @@ public class PlayerInteraction : MonoBehaviour
     private InputAction stashAction;
     private InputAction closeKeypadAction;
 
+
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -58,6 +59,7 @@ public class PlayerInteraction : MonoBehaviour
         Cursor.visible = false;
         PlayerMovement.SetCanMoveAndLookAround(true);
     }
+
 
     public GameObject getHeldObject()
     {
@@ -203,6 +205,14 @@ public class PlayerInteraction : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 PlayerMovement.SetCanMoveAndLookAround(false);
+            }
+            else if (hit.collider.CompareTag("Paper"))
+            {
+                PaperClickHandler paperHandler = hit.collider.GetComponent<PaperClickHandler>();
+                if (paperHandler != null)
+                {
+                    paperHandler.ShowMessage();
+                }
             }
         }
     }

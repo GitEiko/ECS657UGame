@@ -8,24 +8,24 @@ public class PaperClickHandler : MonoBehaviour
 
     [TextArea]
     public string paperMessage;
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0)) 
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+    //void Update()
+    //{
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //        RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform == this.transform)
-                {
-                    ShowMessage();
-                }
-            }
-        }
-    }
+    //        if (Physics.Raycast(ray, out hit))
+    //        {
+    //            if (hit.transform == this.transform)
+    //            {
+    //                ShowMessage();
+    //            }
+    //        }
+    //    }
+    //}
 
-    void ShowMessage()
+    public void ShowMessage()
     {
         if (messageCanvas != null && messageText != null)
         {
