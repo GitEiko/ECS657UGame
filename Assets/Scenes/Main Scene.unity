@@ -1760,7 +1760,7 @@ MonoBehaviour:
   throwText: {fileID: 874781266}
   inventorySystem: {fileID: 1012667259}
   keypadPanel: {fileID: 1658145179}
-  messageCanvas: {fileID: 1367275965}
+  paperPanel: {fileID: 0}
   keypadController: {fileID: 470982139}
   crosshair: {fileID: 200723943}
   crosshairInRange: {fileID: 1212041173}
@@ -37968,7 +37968,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1367275966
 MonoBehaviour:
   m_ObjectHideFlags: 0
