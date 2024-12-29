@@ -74,6 +74,9 @@ void Start()
             else
             {
                 slotImages[i].sprite = null;
+                Color color = slotImages[i].color;
+                color.a = Mathf.Clamp01(0.2f);
+                slotImages[i].color = color;
             }
         }
     }
@@ -82,7 +85,7 @@ void Start()
     {
         GameObject itemCopy = Instantiate(item);
         itemCopy.transform.position = itemDisplayPosition.position;
-        itemCopy.transform.localScale = item.transform.lossyScale;
+        itemCopy.transform.localScale = item.transform.lossyScale / 2;
         itemCopy.transform.rotation = Quaternion.identity;
 
         itemCopy.SetActive(true);
@@ -102,6 +105,9 @@ void Start()
         RenderTexture.active = null;
         thumbnailCamera.targetTexture = null;
         slotImage.sprite = Sprite.Create(thumbnail, new Rect(0, 0, thumbnail.width, thumbnail.height), new Vector2(0.5f, 0.5f));
+        Color color = slotImage.color;
+        color.a = Mathf.Clamp01(1);
+        slotImage.color = color;
 
         DestroyImmediate(itemCopy);
     }

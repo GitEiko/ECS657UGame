@@ -13,7 +13,7 @@ public class EnemyNavigation : MonoBehaviour
 
     public Transform[] patrolPoints;
     private int currentPatrolIndex = 0;
-
+    private bool isStunned = false;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -25,6 +25,9 @@ public class EnemyNavigation : MonoBehaviour
     void Update()
     {
         //Debug.Log(currentState);
+
+        if (isStunned) return;
+
         if (currentState == EnemyState.Chase)
         {
             gameObject.transform.rotation.Equals(player.rotation);
@@ -45,7 +48,29 @@ public class EnemyNavigation : MonoBehaviour
         {
             setCurrentState(EnemyState.Patrol);
         }
+        if (collision.gameObject.tag == "PickUp")
+        {
+            collision.gameObject.SetActive(false);
+            StartCoroutine(StunEnemy(2f));
+        }
     }
+
+    IEnumerator StunEnemy(float stunDuration)
+    {
+        isStunned = true;
+        agent.isStopped = true;
+
+        yield return new WaitForSeconds(stunDuration);
+
+        isStunned = false;
+        agent.isStopped = false;
+
+        if (currentState == EnemyState.Patrol)
+        {
+            GoToNextPatrolPoint();
+        }
+    }
+
 
     void GoToNextPatrolPoint()
     {
