@@ -222,6 +222,9 @@ public class PlayerInteraction : MonoBehaviour
                 PaperClickHandler paperHandler = hit.collider.GetComponent<PaperClickHandler>();
                 if (paperHandler != null)
                 {
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                    PlayerMovement.SetCanMoveAndLookAround(false);
                     paperHandler.ShowMessage();
                 }
             }
