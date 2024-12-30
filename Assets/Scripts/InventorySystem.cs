@@ -16,11 +16,13 @@ public class InventorySystem : MonoBehaviour
 
     private List<GameObject> inventory = new List<GameObject>();
     private int currentSlotIndex = 0;
-    public InputActionReference scrollAction; 
+    public InputActionReference scrollAction;
+    public InputActionReference switchSlotAction;
     [SerializeField] private PlayerInteraction interactionSystem;
-    
+    private float switchCooldown = 0.2f;
+    private float lastSwitchTime = 0f;
 
-void Start()
+    void Start()
     {
         foreach (var slotImage in slotImages)
         {
@@ -28,6 +30,7 @@ void Start()
             slotImage.material.mainTexture = null;
         }
         scrollAction.action.Enable();
+        switchSlotAction.action.Enable();
     }
 
     void Update()
@@ -37,6 +40,17 @@ void Start()
         {
             currentSlotIndex = (currentSlotIndex + (scrollValue.y > 0 ? -1 : 1) + maxSlots) % maxSlots;
             HighlightSlot(currentSlotIndex);
+        }
+
+        if (Time.time - lastSwitchTime > switchCooldown)
+        {
+            Vector2 slotSwitchInput = switchSlotAction.action.ReadValue<Vector2>();
+            if (Mathf.Abs(slotSwitchInput.x) > 0.1f)
+            {
+                currentSlotIndex = (currentSlotIndex + (slotSwitchInput.x > 0 ? 1 : -1) + maxSlots) % maxSlots;
+                HighlightSlot(currentSlotIndex);
+                lastSwitchTime = Time.time;
+            }
         }
     }
 
