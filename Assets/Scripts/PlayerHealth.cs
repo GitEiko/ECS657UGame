@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public Vector3 checkpointPosition;
     private int currentLives;
     private CharacterController controller;
+    public PlayerInteraction interaction;
 
     void Start()
     {
@@ -28,6 +29,21 @@ public class PlayerHealth : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        if (interaction.keypadPanel.activeSelf)
+        {
+            interaction.keypadPanel.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            PlayerMovement.SetCanMoveAndLookAround(true);
+        }
+        if (interaction.paperPanel.activeSelf)
+        {
+            interaction.paperPanel.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            PlayerMovement.SetCanMoveAndLookAround(true);
+        }
+
         if (collision.gameObject.CompareTag("EnemyTest"))
         {
             TakeDamage(1);

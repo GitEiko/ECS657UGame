@@ -30,7 +30,7 @@ public class KeypadController : MonoBehaviour
 
     public void AddDigit(string digit)
     {
-        if (currentInput.Length < 8) 
+        if (currentInput.Length < 10) 
         {
             currentInput += digit;
             UpdateDisplay();
@@ -55,8 +55,6 @@ public class KeypadController : MonoBehaviour
         {
             passwordDisplay.text = "Incorrect"; 
         }
-
-       
     }
 
     public void SetCurrentKeypad(Keypad currentKeypad)

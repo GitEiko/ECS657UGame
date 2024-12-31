@@ -18,8 +18,8 @@ public class PlayerInteraction : MonoBehaviour
     private AudioSource audio;
 
     [SerializeField] private InventorySystem inventorySystem;
-    [SerializeField] private GameObject keypadPanel;
-    [SerializeField] private GameObject paperPanel;
+    public GameObject keypadPanel;
+    public GameObject paperPanel;
     [SerializeField] private KeypadController keypadController;
 
     private GameObject heldObject = null;
