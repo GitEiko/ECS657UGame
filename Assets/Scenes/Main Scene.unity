@@ -8938,7 +8938,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2007185615}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -38541,7 +38541,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2007185615}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: LoadMenu
         m_Mode: 1
@@ -46092,6 +46092,7 @@ GameObject:
   - component: {fileID: 1629587585}
   - component: {fileID: 1629587584}
   - component: {fileID: 1629587586}
+  - component: {fileID: 1629587587}
   m_Layer: 5
   m_Name: OptionsPanel
   m_TagString: Untagged
@@ -46174,6 +46175,14 @@ MonoBehaviour:
   masterVol: {fileID: 585172267}
   musicVol: {fileID: 893964165}
   mainAudioMixer: {fileID: 24100000, guid: 387ba64dd0147024586633356b1382f8, type: 2}
+--- !u!81 &1629587587
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629587582}
+  m_Enabled: 1
 --- !u!1 &1630090923
 GameObject:
   m_ObjectHideFlags: 0
@@ -58226,6 +58235,7 @@ GameObject:
   - component: {fileID: 2007185612}
   - component: {fileID: 2007185611}
   - component: {fileID: 2007185615}
+  - component: {fileID: 2007185616}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -58339,6 +58349,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1037861492}
   optionsMenuUI: {fileID: 1629587582}
+--- !u!81 &2007185616
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007185610}
+  m_Enabled: 1
 --- !u!1001 &2009702194
 PrefabInstance:
   m_ObjectHideFlags: 0
