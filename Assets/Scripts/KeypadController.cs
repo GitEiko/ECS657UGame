@@ -30,7 +30,7 @@ public class KeypadController : MonoBehaviour
 
     public void AddDigit(string digit)
     {
-        if (currentInput.Length < 8) 
+        if (currentInput.Length < 15) 
         {
             currentInput += digit;
             UpdateDisplay();
