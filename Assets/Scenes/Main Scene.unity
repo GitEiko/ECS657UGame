@@ -58235,7 +58235,6 @@ GameObject:
   - component: {fileID: 2007185612}
   - component: {fileID: 2007185611}
   - component: {fileID: 2007185615}
-  - component: {fileID: 2007185616}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -58349,14 +58348,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1037861492}
   optionsMenuUI: {fileID: 1629587582}
---- !u!81 &2007185616
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007185610}
-  m_Enabled: 1
 --- !u!1001 &2009702194
 PrefabInstance:
   m_ObjectHideFlags: 0
