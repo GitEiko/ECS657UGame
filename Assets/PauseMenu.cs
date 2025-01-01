@@ -3,30 +3,38 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
     public static bool GamePaused = false;
-
+    private PlayerInput playerInput;
     public GameObject pauseMenuUI;
+    public GameObject optionsMenuUI;
+    private InputAction escapeAction;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-       if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (GamePaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
+        playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+        escapeAction = playerInput.actions.FindAction("Escape");
+        escapeAction.performed += OnEscape;
+    }
 
-        } 
+    public void OnEscape(InputAction.CallbackContext context)
+    {
+        if (optionsMenuUI.activeSelf)
+        {
+            return;
+        }
+        else if (GamePaused)
+        {
+            Resume();
+        }
+        else
+        {
+            Pause();
+        }
     }
 
     public void Resume()
@@ -35,7 +43,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         PlayerMovement.SetCanMoveAndLookAround(true);
         GamePaused = false;
-        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Pause()
@@ -44,8 +53,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0;
         PlayerMovement.SetCanMoveAndLookAround(false);
         GamePaused = true;
-
-
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     } 
 
     public void LoadMenu()
