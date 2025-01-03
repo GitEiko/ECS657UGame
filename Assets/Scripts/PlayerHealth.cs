@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -79,6 +80,11 @@ public class PlayerHealth : MonoBehaviour
 
     private void GameOver()
     {
+        if (currentLives == 0)
+        {
+            SceneManager.LoadScene("MainMenu");
+            Debug.Log("Game Over! You ran out of lives.");
+        }
         Debug.Log("Game Over! You ran out of lives.");
 
     }
