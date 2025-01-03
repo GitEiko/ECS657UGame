@@ -82,7 +82,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (currentLives == 0)
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("LosingCutscene");
             Debug.Log("Game Over! You ran out of lives.");
         }
         Debug.Log("Game Over! You ran out of lives.");

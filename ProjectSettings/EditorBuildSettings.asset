@@ -14,5 +14,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main Scene.unity
     guid: 155cdc434166cdb49a5212075e6be1ba
+  - enabled: 1
+    path: Assets/Scenes/LosingCutscene.unity
+    guid: 363e60a4b00838c478855a89891389d9
+  - enabled: 1
+    path: Assets/Scenes/WinningCutscene.unity
+    guid: ab44a96a15ee57b48a07d5ad1b4de079
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
