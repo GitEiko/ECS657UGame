@@ -4,8 +4,9 @@ using TMPro;
 public class PaperClickHandler : MonoBehaviour
 {
     public GameObject messageCanvas;
-    public TMP_Text messageText; 
-
+    public TMP_Text messageText;
+    public PlayerHealth playerHealth;
+    public bool isCheckpoint;
     [TextArea]
     public string paperMessage;
     //void Update()
@@ -31,6 +32,10 @@ public class PaperClickHandler : MonoBehaviour
         {
             messageCanvas.SetActive(true);
             messageText.text = paperMessage; 
+        }
+        if (isCheckpoint)
+        {
+            playerHealth.checkpointPosition = gameObject.transform.position;
         }
     }
 }

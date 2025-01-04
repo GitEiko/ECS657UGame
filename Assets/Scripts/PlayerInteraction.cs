@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -97,7 +98,7 @@ public class PlayerInteraction : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.CompareTag("PickUp") || hit.collider.CompareTag("Door") || hit.collider.CompareTag("Keypad") || hit.collider.CompareTag("Paper"))
+                if (hit.collider.CompareTag("PickUp") || hit.collider.CompareTag("Door") || hit.collider.CompareTag("Keypad") || hit.collider.CompareTag("Paper") || hit.collider.CompareTag("FinalDoor"))
                 {
                     crosshair.SetActive(false);
                     crosshairInRange.SetActive(true);
@@ -227,6 +228,10 @@ public class PlayerInteraction : MonoBehaviour
                     PlayerMovement.SetCanMoveAndLookAround(false);
                     paperHandler.ShowMessage();
                 }
+            }
+            else if (hit.collider.CompareTag("FinalDoor") && PlayerMovement.GetCanMoveAndLookAround())
+            {
+                SceneManager.LoadScene("WinningCutscene");
             }
         }
     }

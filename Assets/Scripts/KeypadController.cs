@@ -9,6 +9,7 @@ public class KeypadController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI passwordDisplay;
     [SerializeField] private Keypad currentKeypad;
 
+    public GameObject exitDoor;
     private string currentInput = "";
 
     private void Start()
@@ -50,6 +51,10 @@ public class KeypadController : MonoBehaviour
             passwordDisplay.text = "Correct";
             currentKeypad.GetDoorObject().tag = "Door";
             currentKeypad.tag = "Untagged";
+            if (currentKeypad.isLastKeypad)
+            {
+                exitDoor.tag = "FinalDoor";
+            }
         }
         else
         {

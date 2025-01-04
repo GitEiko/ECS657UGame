@@ -9,6 +9,7 @@ TagManager:
   - Keypad
   - Door
   - Paper
+  - FinalDoor
   layers:
   - Default
   - TransparentFX

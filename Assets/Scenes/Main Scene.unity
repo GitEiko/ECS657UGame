@@ -1690,7 +1690,7 @@ MonoBehaviour:
   - {fileID: 2068832800}
   - {fileID: 483997184}
   - {fileID: 1604531321}
-  checkpointPosition: {x: 65.957886, y: 5.4279222, z: -63.112366}
+  checkpointPosition: {x: 9.91, y: 2.582624, z: -18.22}
   interaction: {fileID: 57203992}
 --- !u!1001 &57784961
 PrefabInstance:
@@ -1847,6 +1847,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 1
   paperMessage: "He was obsessed with reflections. He made me write numbers that
     read the same backward as forward. Find the largest three-digit number that does
     this\u2014he said it was important. Figured it out? RUN TO ROOM 6"
@@ -2066,6 +2068,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 1
   paperMessage: "The calender he keeps in room 4... January 1, March 2, May 3, July
     4... He circled these dates in red. Match them to the months and days\u2014maybe
     it\u2019ll unlock your way out."
@@ -2512,6 +2516,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 0
   paperMessage: You need to unlock door number 33 The passcode is three times the
     square root of 1089 the room number is a third of the passcode.
 --- !u!65 &68862942
@@ -9891,6 +9897,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 0
   paperMessage: The passcode for room 22 is 22 multiplied by the number of days in
     a week
 --- !u!65 &291289693
@@ -12640,6 +12648,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 0
   paperMessage: "I am a three-digit number. Multiply me by 2 and subtract 300, and
     you\u2019ll get 200. What am I? room 30 awaits"
 --- !u!65 &372819064
@@ -15208,6 +15218,7 @@ MonoBehaviour:
   keypadPanel: {fileID: 1663974170}
   passwordDisplay: {fileID: 1438788020}
   currentKeypad: {fileID: 0}
+  exitDoor: {fileID: 1156043231}
 --- !u!4 &470982140
 Transform:
   m_ObjectHideFlags: 0
@@ -18968,6 +18979,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 1
   paperMessage: "The graffiti in room 10, the shadows hold the key. Count the vowels,
     consonants, and spaces in this phrase: \"THEY HIDE IN THE SHADOWS, FOLLOW THEIR
     COUNT.\" Concatenation of those numbers are the code. Don\u2019t trust him.\""
@@ -20537,6 +20550,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 1
   paperMessage: "I counted the tools he left behind: scalpels (3), scissors (4),
     clamps (2), syringes (1). Arrange the counts in descending order. I tried to
     escape... didn\u2019t make it. Maybe you will. Go to room 13"
@@ -23693,6 +23708,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 0
   paperMessage: 'Trying to unlock door 25? Here is a hint: I am an even number. My
     digits add up to 12. My tens digit is twice my ones digit, and my hundreds digit
     is twice my tens digit.'
@@ -23898,7 +23915,7 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -24038,6 +24055,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 0
   paperMessage: The passcode for room 31 is 11 squared, plus 20
 --- !u!65 &741387516
 BoxCollider:
@@ -32261,6 +32280,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 0
   paperMessage: I am divisible by 9. I am a three-digit number. The sum of my digits
     is 18. What number am I? Room 5 is next
 --- !u!65 &1029801005
@@ -33319,7 +33340,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
-  paperMessage: 'The starting passcode is 100 plus the number of months in a year.
+  playerHealth: {fileID: 0}
+  isCheckpoint: 0
+  paperMessage: 'Rooms in the middle do not have passwords, the Doctor will not chase
+    you inside the rooms, you will only be chased in corridors. You can find one
+    bottle to throw and stun the Doctor in every puzzle room. Solve the puzzles and
+    escape the hospital. In every room you will find a hint for the password of the
+    next room.
+
+
+    The room 1 passcode is 100 plus the number of months in a year.
 
     Find
     your next clue in room 1'
@@ -35720,6 +35750,12 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &1156043231 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 116412, guid: 9c25864566bc2a7489bef25ecb47dd6c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1471878055}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1159195297
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37240,6 +37276,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 1
   paperMessage: "I saw his ID\u20146, 3, 2, 9, 8\u2014and combined it with Room 7,
     where he cornered me. Add the room number to each number of his badge. Reverse
     the new ID you got. May this be of use to you in your escape\n\nFIND THE EXIT"
@@ -40098,6 +40136,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 0
   paperMessage: 'A hint to unlock door 32: I am a perfect square. I am greater than
     100 but less than 150. The sum of my digits is 13. What number am I'
 --- !u!65 &1292683956
@@ -40767,6 +40807,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 0
   paperMessage: "He left five objects inside the patient in room 15, numbered by
     size: 3cm, 5cm, 2cm, 7cm, 4cm. Put them in order and you\u2019ll have the code.
     I\u2019m sorry for whoever finds this... "
@@ -41601,6 +41643,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 0
   paperMessage: The passcode for room 23 is 3 cubed plus the number of sides on a
     triangle.
 --- !u!65 &1325607301
@@ -41729,6 +41773,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 0
   paperMessage: The next room is 29. The next passcode is the square of 17 minus
     4
 --- !u!65 &1328450700
@@ -43578,6 +43624,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 0
   paperMessage: The passcode for room 24 is 100 divided by the square root of 25
 --- !u!65 &1422130644
 BoxCollider:
@@ -45142,8 +45190,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4778695965870028918, guid: 9c25864566bc2a7489bef25ecb47dd6c,
         type: 3}
+      propertyPath: isLastKeypad
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778695965870028918, guid: 9c25864566bc2a7489bef25ecb47dd6c,
+        type: 3}
       propertyPath: correctPassword
-      value: 285
+      value: 576190131
       objectReference: {fileID: 0}
     - target: {fileID: 5511058525730249226, guid: 9c25864566bc2a7489bef25ecb47dd6c,
         type: 3}
@@ -45169,6 +45222,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.128
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575996784420621146, guid: 9c25864566bc2a7489bef25ecb47dd6c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5575996784420621146, guid: 9c25864566bc2a7489bef25ecb47dd6c,
         type: 3}
@@ -45209,6 +45267,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054779711300977775, guid: 9c25864566bc2a7489bef25ecb47dd6c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45818,6 +45881,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 0
   paperMessage: The passcode for room 20 is 20 multiplied by 5, minus 50
 --- !u!65 &1487568551
 BoxCollider:
@@ -50597,6 +50662,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 1
   paperMessage: "They made me fix the wiring in the storage room 16. There were four
     corners, each with candles\u2014some blown out. 3 candles in the second corner,
     6 in the fourth, 1 in the third and 5 in the first. Put the number of candles
@@ -50764,6 +50831,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 1
   paperMessage: "HELP. Those letters mean more than you think. Replace each with
     its position in the alphabet. Multiply by 3, subtract 2... It\u2019s all I could
     write before he found me. Next room is room 28"
@@ -52395,6 +52464,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 1
   paperMessage: "I was forced to assist him in room 11. He made me schedule surgeries
     for Patient X, always using prime intervals. The concatenation of the first 5
     prime numbers should give you the code. I pray you\u2019re stronger than I was"
@@ -58081,6 +58152,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 0
   paperMessage: room three's passcode is the square of 15, minus 10
 --- !u!65 &1877028429
 BoxCollider:
@@ -59205,6 +59278,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 0
   paperMessage: Room 12's passcode is the square of 12, divided by 2
 --- !u!65 &1924048401
 BoxCollider:
@@ -61771,6 +61846,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 0
   paperMessage: The passcode for room 19 is three times the cube root of 729
 --- !u!65 &1987426342
 BoxCollider:
@@ -62112,6 +62189,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 0
   paperMessage: Add 2 to the room number, then multiply by 10, thats the passcode
     for room 34
 --- !u!65 &1999194510
@@ -65263,6 +65342,11 @@ PrefabInstance:
       objectReference: {fileID: 121413972}
     - target: {fileID: 4778695965870028918, guid: 9c25864566bc2a7489bef25ecb47dd6c,
         type: 3}
+      propertyPath: isLastKeypad
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778695965870028918, guid: 9c25864566bc2a7489bef25ecb47dd6c,
+        type: 3}
       propertyPath: correctPassword
       value: 180
       objectReference: {fileID: 0}
@@ -65484,6 +65568,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 57203995}
+  isCheckpoint: 1
   paperMessage: "I overheard the doctor muttering codes again. He encrypts them using
     the alphabet cipher. This one\u2019s important: JZNFQ. Decipher it.. I hope you
     make it out... unlike me.\"\r\nExample: IGJLT \u2192 97101220\r\nNext Room: 7"
@@ -65808,6 +65894,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 1
   paperMessage: The clock in Room 14 never worked right, but it always stuck at 13:27.
     The doctor would smile and say, "Time is meaningless here." Add the hour to twice
     the minutes, and reverse it. Then append 1327 to its end. Maybe this will help
@@ -65932,6 +66020,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 0
   paperMessage: I am a three-digit number. My hundreds digit is three times my ones
     digit, and my tens digit is the sum of the hundreds and ones digits. What number
     am I? now go to Room 21 for your next clue
@@ -67101,6 +67191,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageCanvas: {fileID: 1304660884}
   messageText: {fileID: 731489764}
+  playerHealth: {fileID: 0}
+  isCheckpoint: 1
   paperMessage: "I can\u2019t get his voice out of my head: \u2018Double the room
     number, subtract the sum of its digits, then multiply by 5.\u2019 He said it
     with a laugh. That\u2019s the code to room 2. I hope you\u2019re stronger than

@@ -6,7 +6,7 @@ public class Keypad : MonoBehaviour
 {
     [SerializeField] private GameObject door;
     [SerializeField] private string correctPassword;
-
+    public bool isLastKeypad;
     public GameObject GetDoorObject()
     {
         return door;
