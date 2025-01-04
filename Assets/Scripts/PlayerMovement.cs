@@ -10,10 +10,10 @@ public class PlayerMovement : MonoBehaviour
     InputAction lookAction;
     InputAction sprintAction;
 
-    //float speed;
-    //float sprintSpeed;
-    [SerializeField] float speed = 5f;
-    [SerializeField] float sprintSpeed = 10f;
+    float speed;
+    float sprintSpeed;
+    //[SerializeField] float speed = 5f;
+    //[SerializeField] float sprintSpeed = 10f;
     [SerializeField] float lookSensitivity = 1f;
     [SerializeField] Transform playerCamera;
     [SerializeField] float gravity = -9.81f;
@@ -35,8 +35,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        //speed = GameSettings.Instance.PlayerSpeed;
-        //sprintSpeed = speed + 8;
+        speed = GameSettings.Instance.PlayerSpeed;
+        sprintSpeed = speed + 8;
         canMoveAndLookAround = true;
         playerInput = GetComponent<PlayerInput>();
         characterController = GetComponent<CharacterController>();

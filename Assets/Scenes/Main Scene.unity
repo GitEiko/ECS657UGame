@@ -1496,8 +1496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682d00c1ae52bc9449885b802c1af268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 12
-  sprintSpeed: 20
   lookSensitivity: 0.1
   playerCamera: {fileID: 519104766}
   gravity: -9.81
@@ -27740,7 +27738,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 877109925}
-  - component: {fileID: 877109926}
   m_Layer: 0
   m_Name: PlayerObject
   m_TagString: Untagged
@@ -27764,14 +27761,6 @@ Transform:
   - {fileID: 57203991}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &877109926
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 877109924}
-  m_Enabled: 1
 --- !u!4 &879746291 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 494596, guid: acb5b460622c8ee4b825a3e68c33c1b6,
