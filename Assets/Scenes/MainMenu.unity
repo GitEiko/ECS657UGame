@@ -1945,10 +1945,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Footstep Sound Effects - Nox_Sound
+  m_text: 'Footstep Sound Effects -  https://assetstore.unity.com/packages/audio/sound-fx/foley/footsteps-essentials-189879
 
 
-    The Plague Doctor - BELAZ'
+    The
+    Plague Doctor - https://skfb.ly/oP6Ln
+
+
+    Keypad - https://assetstore.unity.com/packages/3d/props/electronics/keypad-free-262151
+
+
+    3D
+    Old Scanned Documents - https://www.textures.com/download/3d-scanned-old-documents-7/144457"'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1975,8 +1983,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5335,8 +5343,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6336,14 +6344,14 @@ MonoBehaviour:
     Input Devices - Ahmet
 
 
-    Sound Effect - <a
+    Sound Effect - https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=103723">freesound_community<
 
 
     Beer
-    Bottle - gelmi.com.br
+    Bottle - https://skfb.ly/6SKTV
 
 
-    Modular Hospital - FoeJofMay
+    Modular Hospital - https://assetstore.unity.com/packages/3d/environments/hospital-horror-pack-44045
 
 
 
@@ -6376,8 +6384,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
