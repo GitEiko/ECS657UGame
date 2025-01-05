@@ -231,6 +231,8 @@ public class PlayerInteraction : MonoBehaviour
             }
             else if (hit.collider.CompareTag("FinalDoor") && PlayerMovement.GetCanMoveAndLookAround())
             {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 SceneManager.LoadScene("WinningCutscene");
             }
         }

@@ -452,9 +452,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0123456789
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8b3bcd1833a406f478e125db01fc0b6d, type: 2}
-  m_sharedMaterial: {fileID: 5608202080528317625, guid: 8b3bcd1833a406f478e125db01fc0b6d,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -810,6 +809,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62257aab0e7d144299778dbbed5b623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  door: {fileID: 0}
+  correctPassword: 
+  isLastKeypad: 0
 --- !u!1 &2742457487408926263
 GameObject:
   m_ObjectHideFlags: 0

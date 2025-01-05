@@ -82,6 +82,8 @@ public class PlayerHealth : MonoBehaviour
     {
         if (currentLives == 0)
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             SceneManager.LoadScene("LosingCutscene");
             Debug.Log("Game Over! You ran out of lives.");
         }

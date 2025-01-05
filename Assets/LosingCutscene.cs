@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class LosingCutscene : MonoBehaviour
 {
-    private void OnEnable()
+    public void MainMenu()
     {
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Single);
     }
 }
 
