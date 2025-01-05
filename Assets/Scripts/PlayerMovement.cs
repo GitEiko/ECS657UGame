@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     CharacterController characterController;
     Vector3 lastFootstepPosition;
 
+    // Initializes movement, sprinting, and camera controls.
     void Start()
     {
         speed = GameSettings.Instance.PlayerSpeed;
@@ -53,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
         lastFootstepPosition = transform.position;
     }
 
+    // Applies gravity to the player, adjusting vertical velocity when grounded or airborne.
     void ApplyGravity()
     {
         if (characterController.isGrounded)
@@ -65,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // Changes the enemy state to Patrol when the player enters a trigger collider.
     void OnTriggerEnter(Collider other)
     {
         if (colliders.Contains(other))
@@ -73,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // Changes the enemy state to Chase when the player exits a trigger collider.
     void OnTriggerExit(Collider other)
     {
         if (colliders.Contains(other))
@@ -81,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // Handles player movement, looking around, and footstep sounds, if the player can move and look around.
     void Update()
     {
         if (canMoveAndLookAround)
@@ -96,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
         ApplyGravity();
     }
 
+    // Moves the player based on input and applies sprinting if active.
     void MovePlayer()
     {
         Vector2 input = moveAction.ReadValue<Vector2>();
@@ -108,6 +114,7 @@ public class PlayerMovement : MonoBehaviour
         characterController.Move(moveDirection * currentSpeed * Time.deltaTime);
     }
 
+    // Rotates the player based on input to control camera orientation.
     void LookAround()
     {
         Vector2 lookVector = lookAction.ReadValue<Vector2>();
@@ -119,6 +126,7 @@ public class PlayerMovement : MonoBehaviour
         playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
     }
 
+    // Checks the player's movement distance and triggers footstep sounds.
     void HandleFootsteps()
     {
         if (!characterController.isGrounded) return;
@@ -133,6 +141,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // Plays an appropriate footstep sound based on the surface the player is walking on.
     void PlayFootstepSound()
     {
         RaycastHit hit;
@@ -155,6 +164,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // Plays a random footstep sound from the provided list of clips.
     void PlayRandomSound(List<AudioClip> clips)
     {
         if (clips == null || clips.Count == 0 || audioSource == null) return;
@@ -163,21 +173,25 @@ public class PlayerMovement : MonoBehaviour
         audioSource.PlayOneShot(clip);
     }
 
+    // Starts the sprinting state.
     void StartSprinting()
     {
         isSprinting = true;
     }
 
+    // Stops the sprinting state.
     void StopSprinting()
     {
         isSprinting = false;
     }
 
+    // Sets whether the player can move and look around.
     public static void SetCanMoveAndLookAround(bool val)
     {
         canMoveAndLookAround = val;
     }
 
+    // Returns whether the player can move and look around.
     public static bool GetCanMoveAndLookAround()
     {
         return canMoveAndLookAround;

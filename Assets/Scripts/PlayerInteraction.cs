@@ -35,7 +35,7 @@ public class PlayerInteraction : MonoBehaviour
     private InputAction stashAction;
     private InputAction closeKeypadAction;
 
-
+    // Initializes the player input actions and assigns the necessary actions for interacting with objects.
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -46,6 +46,7 @@ public class PlayerInteraction : MonoBehaviour
         closeKeypadAction = playerInput.actions.FindAction("CloseKeypad");
     }
 
+    // Subscribes to the input action events for Throw, Fire, Stash, and CloseKeypad interactions.
     void OnEnable()
     {
         throwAction.performed += OnThrow;
@@ -54,6 +55,7 @@ public class PlayerInteraction : MonoBehaviour
         closeKeypadAction.performed += OnCloseKeypad;
     }
 
+    // Closes the keypad or paper panels and restores the cursor lock and player movement.
     private void OnCloseKeypad(InputAction.CallbackContext context)
     {
         if (keypadPanel.activeSelf)
@@ -72,12 +74,13 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-
+    // Returns the currently held object by the player, if any.
     public GameObject getHeldObject()
     {
         return heldObject;
     }
 
+    // Unsubscribes from the input action events to avoid memory leaks.
     void OnDisable()
     {
         throwAction.performed -= OnThrow;
@@ -85,6 +88,7 @@ public class PlayerInteraction : MonoBehaviour
         stashAction.performed -= OnStash;
     }
 
+    // Handles the crosshair state based on the player's interaction range and updates the held object position.
     void Update()
     {
         if (heldObject != null)
@@ -112,6 +116,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    // Tries to pick up an object within range if the player can pick it up.
     public void TryPickUpObject()
     {
         Ray ray = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
@@ -126,6 +131,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    // Picks up an object, attaches it to the player's hold position, and disables its gravity and rotation.
     public void PickUpObject(GameObject pickUpObject)
     {
         heldObject = pickUpObject;
@@ -145,11 +151,13 @@ public class PlayerInteraction : MonoBehaviour
         crosshairInRange.SetActive(false);
     }
 
+    // Keeps the held object at the correct position relative to the player's camera.
     public void HoldObject()
     {
         heldObject.transform.position = playerCamera.transform.position + playerCamera.transform.forward * 1.5f;
     }
 
+    // Handles the input for throwing the currently held object.
     public void OnThrow(InputAction.CallbackContext context)
     {
         if (heldObject != null)
@@ -158,6 +166,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    // Throws the held object with a specified force and updates the inventory and UI accordingly.
     public void ThrowObject()
     {
         heldObject.transform.parent = null;
@@ -175,6 +184,7 @@ public class PlayerInteraction : MonoBehaviour
 
     }
 
+    // Picks up an object and holds it at the player's position without using inventory.
     public void PullObject(GameObject pickUpObject)
     {
         heldObject = pickUpObject;
@@ -191,7 +201,7 @@ public class PlayerInteraction : MonoBehaviour
         throwText.SetActive(true);
     }
 
-
+    // Handles the player's interaction with objects (pickups, doors, keypads, etc.) when firing (e.g., pressing a button).
     public void OnFire(InputAction.CallbackContext context)
     {
         Ray ray = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
@@ -238,6 +248,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    // Toggles the door's open/close state and handles its animation and interaction with the NavMesh.
     public void ToggleDoor(GameObject door)
     {
         Animator _anim = door.GetComponent<Animator>();
@@ -257,6 +268,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    // Switches the current held item with another item and updates the UI accordingly.
     public void switchItem(GameObject item)
     {
         if (heldObject != null)
@@ -292,6 +304,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    // Stashes the current held object, making it invisible and resetting the hold state.
     void OnStash(InputAction.CallbackContext context)
     {
         if (heldObject != null)

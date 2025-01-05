@@ -8,23 +8,15 @@ public class OptionsScript : MonoBehaviour
     public Slider masterVol, musicVol;
     public AudioMixer mainAudioMixer;
 
+    // Adjusts the master volume using the value from the master volume slider
     public void ChangeMasterVol()
     {
         mainAudioMixer.SetFloat("MasterVol", masterVol.value);
-    }  public void ChangeMusicVol()
+    }
+
+    // Adjusts the music volume using the value from the music volume slider
+    public void ChangeMusicVol()
     {
         mainAudioMixer.SetFloat("MusicVol", musicVol.value);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

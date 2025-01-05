@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
     private CharacterController controller;
     public PlayerInteraction interaction;
 
+    // Initializes the player's health, sets up the controller, and updates the UI to reflect the current lives
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -19,6 +20,7 @@ public class PlayerHealth : MonoBehaviour
         UpdateLivesUI();
     }
 
+    // Reduces the player's lives by the specified damage amount and updates the UI accordingly
     public void TakeDamage(int damageAmount)
     {
         currentLives -= damageAmount;
@@ -28,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
         UpdateLivesUI();
     }
 
+    // Checks for collisions, handles interactions with the keypad and paper, and applies damage when colliding with enemies
     void OnCollisionEnter(Collision collision)
     {
         if (interaction.keypadPanel.activeSelf)
@@ -59,11 +62,12 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    // Respawns the player at the checkpoint position, slightly above the ground, and resets the player's velocity to avoid momentum carryover
     private void RespawnPlayer()
     {
             controller.enabled = false;
             // Offset the player slightly above the checkpoint to avoid clipping into the ground
-            Vector3 respawnPosition = checkpointPosition + Vector3.up * 1.0f; // Adjust '1.0f' as needed
+            Vector3 respawnPosition = checkpointPosition + Vector3.up * 1.0f;
             transform.position = respawnPosition;
             Debug.Log(transform.gameObject.name);
 
@@ -78,6 +82,7 @@ public class PlayerHealth : MonoBehaviour
             controller.enabled = true;
     }
 
+    // Ends the game when the player's lives reach zero and transitions to the "LosingCutscene" scene
     private void GameOver()
     {
         if (currentLives == 0)
@@ -91,6 +96,7 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
+    // Updates the UI to show the correct number of life icons based on the player's current lives
     private void UpdateLivesUI()
     {
 

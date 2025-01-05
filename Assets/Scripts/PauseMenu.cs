@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject optionsMenuUI;
     private InputAction escapeAction;
 
+    // Initializes the player input and escape action, setting up the callback for the escape key
     private void Start()
     {
         playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
@@ -21,6 +22,7 @@ public class PauseMenu : MonoBehaviour
         escapeAction.performed += OnEscape;
     }
 
+    // Triggered when the escape key is pressed. Pauses or resumes the game depending on the current state
     public void OnEscape(InputAction.CallbackContext context)
     {
         if (optionsMenuUI.activeSelf)
@@ -37,6 +39,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    // Resumes the game by hiding the pause menu, restoring normal time flow, and locking the cursor
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
@@ -47,6 +50,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = false;
     }
 
+    // Pauses the game by displaying the pause menu, freezing time, and unlocking the cursor
     void Pause()
     {
         pauseMenuUI.SetActive(true);
@@ -55,14 +59,16 @@ public class PauseMenu : MonoBehaviour
         GamePaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-    } 
+    }
 
+    // Loads the "MainMenu" scene when called, going back to the main menu
     public void LoadMenu()
     {
         SceneManager.LoadScene("MainMenu");
         
     }
 
+    // Exits the game application when called
     public void QuitGame()
     {
         Application.Quit();

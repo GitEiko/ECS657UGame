@@ -22,6 +22,7 @@ public class InventorySystem : MonoBehaviour
     private float switchCooldown = 0.2f;
     private float lastSwitchTime = 0f;
 
+    // Initializes slot images and enables input actions for scrolling and slot switching
     void Start()
     {
         foreach (var slotImage in slotImages)
@@ -33,6 +34,7 @@ public class InventorySystem : MonoBehaviour
         switchSlotAction.action.Enable();
     }
 
+    // Handles inventory navigation using scroll and switch inputs, highlighting the current slot
     void Update()
     {
         Vector2 scrollValue = scrollAction.action.ReadValue<Vector2>();
@@ -54,11 +56,13 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
+    // Checks if there is space available in the inventory to pick up a new item
     public bool canPickItem()
     {
         return inventory.Count < maxSlots;
     }
 
+    // Adds an item to the inventory and updates the UI if there is space available
     public void PickUpItem(GameObject item)
     {
         if (inventory.Count < maxSlots)
@@ -68,6 +72,7 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
+    // Removes an item from the inventory and updates the UI if the inventory is not empty
     public void DropItem(GameObject item)
     {
         if (inventory.Count > 0)
@@ -77,6 +82,7 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
+    // Updates the inventory slots to display thumbnails of the items or empty them if there is no item
     private void UpdateInventoryUI()
     {
         for (int i = 0; i < maxSlots; i++)
@@ -95,6 +101,7 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
+    // Generates and assigns a thumbnail image for an item to its corresponding inventory slot
     private void DisplayItemThumbnail(GameObject item, Image slotImage)
     {
         GameObject itemCopy = Instantiate(item);
@@ -126,8 +133,7 @@ public class InventorySystem : MonoBehaviour
         DestroyImmediate(itemCopy);
     }
 
-
-
+    // Highlights the currently selected inventory slot and updates the player's held item
     private void HighlightSlot(int index)
     {
         for (int i = 0; i < slotImages.Count; i++)
@@ -151,5 +157,4 @@ public class InventorySystem : MonoBehaviour
             }
         }
     }
-
 }

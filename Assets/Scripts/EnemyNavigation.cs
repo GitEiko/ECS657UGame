@@ -14,6 +14,8 @@ public class EnemyNavigation : MonoBehaviour
     public Transform[] patrolPoints;
     private int currentPatrolIndex = 0;
     private bool isStunned = false;
+
+    // Initializes the NavMeshAgent, sets the initial state to Patrol, and moves to the first patrol point
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -22,6 +24,7 @@ public class EnemyNavigation : MonoBehaviour
         GoToNextPatrolPoint();
     }
 
+    // Handles enemy behavior, switching between chasing the player or patrolling based on the current state
     void Update()
     {
         //Debug.Log(currentState);
@@ -42,6 +45,7 @@ public class EnemyNavigation : MonoBehaviour
         }
     }
 
+    // Handles collisions with the player and pickup items, changing the state or triggering a stun effect as needed
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -55,6 +59,7 @@ public class EnemyNavigation : MonoBehaviour
         }
     }
 
+    // Temporarily stuns the enemy, stopping its movement for a specified duration, and resumes its behavior afterward
     IEnumerator StunEnemy(float stunDuration)
     {
         isStunned = true;
@@ -71,7 +76,7 @@ public class EnemyNavigation : MonoBehaviour
         }
     }
 
-
+    // Directs the enemy to the next patrol point in the sequence, looping back to the start if needed
     void GoToNextPatrolPoint()
     {
         if (patrolPoints.Length == 0)
@@ -81,6 +86,7 @@ public class EnemyNavigation : MonoBehaviour
         currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
     }
 
+    // Updates the enemy's current state and initiates the appropriate behavior for the new state
     public void setCurrentState(EnemyState state)
     {
         currentState = state;

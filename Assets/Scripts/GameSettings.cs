@@ -17,6 +17,7 @@ public class GameSettings : MonoBehaviour
     public float PlayerSpeed { get; private set; }
     public float EnemySpeed { get; private set; }
 
+    // Ensures a single instance of GameSettings persists across scenes, destroying duplicates
     private void Awake()
     {
         if (Instance == null)
@@ -29,16 +30,20 @@ public class GameSettings : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    // Attempts to assign the menu reference when a new scene is loaded
     private void OnLevelWasLoaded(int level)
     {
         TryAssignMenu();
     }
 
+    // Ensures the menu reference is assigned when the script starts
     private void Start()
     {
         TryAssignMenu();
     }
 
+    // Assigns the Main_Menu component and difficulty buttons if the scene is the main menu, setting up their click listeners
     private void TryAssignMenu()
     {
         if (SceneManager.GetActiveScene().name == "MainMenu")
@@ -58,6 +63,8 @@ public class GameSettings : MonoBehaviour
             GameObject.Find("DifficultyPanel").SetActive(false);
         }
     }
+
+    // Configures player and enemy speeds based on the selected difficulty level and starts the game
     public void SetDifficulty(string difficulty)
     {
         switch (difficulty)
@@ -76,7 +83,6 @@ public class GameSettings : MonoBehaviour
                 break;
         }
         menu.Play();
-        Debug.Log("PLAY CALED");
     }
 }
 

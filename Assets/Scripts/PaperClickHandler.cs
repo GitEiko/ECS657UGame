@@ -9,23 +9,8 @@ public class PaperClickHandler : MonoBehaviour
     public bool isCheckpoint;
     [TextArea]
     public string paperMessage;
-    //void Update()
-    //{
-    //    if (Input.GetMouseButtonDown(0))
-    //    {
-    //        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-    //        RaycastHit hit;
 
-    //        if (Physics.Raycast(ray, out hit))
-    //        {
-    //            if (hit.transform == this.transform)
-    //            {
-    //                ShowMessage();
-    //            }
-    //        }
-    //    }
-    //}
-
+    // Displays the paper message on the canvas and updates the player's checkpoint position if the paper is a checkpoint
     public void ShowMessage()
     {
         if (messageCanvas != null && messageText != null)
