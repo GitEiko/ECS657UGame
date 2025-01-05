@@ -1,7 +1,7 @@
 
 ## Controls
 
-### Movement:
+### Keyboard Controls:
 
 -   **W** - Move forward
 -   **S** - Move backward
@@ -13,7 +13,9 @@
 -   **X** - Close panel
 -   **Left Mouse** - Interact
 -   **Right Mouse** - Throw Item
+-   **Middle Mouse/Scroll** - Change between inventory items
 
+### Controller Controls:
 -   **Left Stick** - Move around
 -   **Right Stick** - Look around
 -   **Right Trigger** - Sprint
@@ -21,12 +23,7 @@
 -   **Button South** - Interact
 -   **Button North** - Stash item
 -   **Button West** - Close panel
-
-### Object Interaction:
-
--   **Left Mouse Button (Fire)** - Pick up objects, Interact with doors
--   **Right Mouse Button (Throw)** - Throw/drop objects
--   **Middle Mouse/Scroll (Change)** - Change between inventory items
+-   **Left-Right D-pad** - Change between inventory items
 
 ## Features
 
