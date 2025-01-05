@@ -27742,6 +27742,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 877109925}
+  - component: {fileID: 877109926}
   m_Layer: 0
   m_Name: PlayerObject
   m_TagString: Untagged
@@ -27765,6 +27766,14 @@ Transform:
   - {fileID: 57203991}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &877109926
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877109924}
+  m_Enabled: 1
 --- !u!4 &879746291 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 494596, guid: acb5b460622c8ee4b825a3e68c33c1b6,
@@ -34816,7 +34825,8 @@ AudioSource:
   m_GameObject: {fileID: 1124320818}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 4881068768989376337, guid: 387ba64dd0147024586633356b1382f8,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 0dca81e1c0f422d429225c7cb0b73d9f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
