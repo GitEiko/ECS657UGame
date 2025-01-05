@@ -1,3 +1,5 @@
+## Door Passcodes for Easily Testing the Game
+[PASSCODES.pdf](https://github.com/user-attachments/files/18311555/PASSCODES.pdf)
 
 ## Controls
 
@@ -50,4 +52,3 @@ The game is broken down into 36 rooms that act as the levels for this game. Each
 - Cameras, possibly multiple and/or dynamic, and post-processing
 - Particle effects, 3D models and animations
 - Immersion, emotion and accessibility
-
