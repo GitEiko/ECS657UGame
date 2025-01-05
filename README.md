@@ -9,6 +9,18 @@
 -   **D** - Move right
 -   **Mouse Movement** - Look around / change direction
 -   **Left Shift** - Sprint
+-   **C** - Stash item
+-   **X** - Close panel
+-   **Left Mouse** - Interact
+-   **Right Mouse** - Throw Item
+
+-   **Left Stick** - Move around
+-   **Right Stick** - Look around
+-   **Right Trigger** - Sprint
+-   **Button East** - Throw
+-   **Button South** - Interact
+-   **Button North** - Stash item
+-   **Button West** - Close panel
 
 ### Object Interaction:
 
@@ -19,9 +31,6 @@
 ## Features
 
 -   **First-Person Perspective (FPS)**: Move through the hospital with traditional FPS controls.
--   **Interaction System**: Pick up and throw objects using mouse controls.
+-   **Interaction System**: Pick up, throw, interact with objects using mouse controls.
 -   **Enemy AI**: A doctor enemy will chase you, adding tension to the gameplay.
--   **Hospital Environment**: Explore a hospital with multiple rooms, each with multiple entrances, setting the stage for future puzzles and challenges.
-
-
-In the final game, detailed puzzles will be introduced, along with additional story elements and a brand new environment to fully immerse the player in the hospital escape scenario. For now, the interaction system and AI give a taste of what’s to come.
+-   **Hospital Environment**: Explore a hospital with multiple rooms, each with multiple entrances, setting the stage for puzzles and challenges.
